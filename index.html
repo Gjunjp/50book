@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>五十音 30 天解謎挑戰書｜淺色電玩版</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+.pg {width:559px;height:794px;position:relative;overflow:hidden;box-sizing:border-box;font-family:'Noto Sans TC',sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pg * {box-sizing:border-box;margin:0;padding:0}
+
+/* =========== LIGHT GAMER THEME =========== */
+.eb {
+    --bg: #F8F9FA; /* 淺色主背景 */
+    --k: #2D3142;  /* 深灰色文字 (取代純黑) */
+    --w: #FFFFFF;  /* 純白卡片底 */
+    --l: #FFD166;  /* 電玩黃 */
+    --v: #EF476F;  /* 珊瑚粉 */
+    --c: #06D6A0;  /* 薄荷綠 */
+    --b: #118AB2;  /* 冒險藍 */
+    background: var(--bg);
+    color: var(--k);
+    font-family: 'Noto Sans TC', sans-serif;
+}
+.eb .bri {font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.04em}
+.eb .band {position:absolute;left:-60px;right:-60px;height:46px;display:flex;align-items:center;gap:22px;white-space:nowrap;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.01em;overflow:hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
+.eb .pill {display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 13px;font-size:11px;font-weight:700; border: 2px solid var(--k);}
+.eb .sticker {position:absolute;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:900; border: 3px solid var(--k); box-shadow: 4px 4px 0 var(--k);}
+.eb .in {background:var(--w);border:2px solid var(--k);border-radius:14px;padding:9px 13px 8px;height:52px;display:flex;flex-direction:column;justify-content:space-between; box-shadow: 2px 2px 0 var(--k);}
+.eb .in small {font-size:9.5px;font-weight:700;letter-spacing:.08em;opacity:.65}
+
+/* Game Elements */
+.game-box { background: var(--w); border: 2px solid var(--k); border-radius: 20px; padding: 20px; box-shadow: 4px 4px 0 var(--k); margin-top:20px; }
+.cw-grid {display:grid; gap:4px; flex:none; justify-content:center;}
+.cw-cell {background:#fff; border-radius:6px; position:relative; border:2px solid var(--k); width:36px; height:36px; box-shadow: 2px 2px 0 var(--k);}
+.cw-num {position:absolute; top:2px; left:4px; font-size:10px; color:var(--v); font-weight:900;}
+
+html,body {margin:0;background:#E4E2DC;font-family:'Noto Sans TC',sans-serif;color:#17171B}
+.bar {position:sticky;top:0;z-index:5;background:#17171B;color:#F3F1EB;display:flex;gap:18px;align-items:center;padding:10px 20px;flex-wrap:wrap}
+.bar b {font-size:13px}
+.seg {display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
+.seg button {border:0;background:transparent;color:inherit;font:inherit;font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer}
+.seg button.on {background:#F3F1EB;color:#17171B}
+.sp {flex:1}
+.pbtn {border:1px solid rgba(255,255,255,.4);background:transparent;color:inherit;border-radius:999px;padding:6px 14px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.set {grid-template-columns:repeat(auto-fill,calc(559px*var(--z)));gap:26px 18px;justify-content:center;max-width:1500px;margin:0 auto;padding:28px 20px 60px;display:grid;}
+.cell {display:flex;flex-direction:column;align-items:center;gap:8px}
+.cap {font:600 11px monospace;letter-spacing:.08em;color:#6b6a66}
+.frame {width:calc(559px*var(--z));height:calc(794px*var(--z));overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.14);cursor:zoom-in;background:#fff}
+.frame>.pg {transform:scale(var(--z));transform-origin:0 0}
+.ov {position:fixed;inset:0;background:rgba(15,15,18,.86);z-index:20;display:none;align-items:center;justify-content:center;gap:24px}
+.ov.show {display:flex}
+.ov .frame {cursor:default}
+.ov button {background:#F3F1EB;border:0;border-radius:50%;width:44px;height:44px;font-size:18px;cursor:pointer}
+.ov .cap {position:absolute;top:18px;left:0;right:0;text-align:center;color:#F3F1EB}
+
+@media print{
+  @page{size:148mm 210mm;margin:0}
+  .bar,.cap,.ov{display:none!important}
+  body{background:#fff}
+  .set{padding:0;}
+  .cell{display:block}
+  .frame{--z:1;width:148mm;height:210mm;box-shadow:none;break-after:page}
+}
+</style>
+</head>
+<body style="--z:.42">
+<div class="bar">
+    <b>五十音淺色解謎挑戰書 · 62 頁</b>
+    <div class="seg" id="zm">
+        <button data-z=".3">S</button>
+        <button data-z=".42" class="on">M</button>
+        <button data-z=".6">L</button>
+    </div>
+    <span class="sp"></span>
+    <span style="font-size:11px;opacity:.6">點任一頁放大，←/→ 翻頁，Esc 關閉</span>
+    <button class="pbtn" onclick="window.print()">列印 / 存 PDF（A5）</button>
+</div>
+
+<div id="app" class="set"></div>
+<div class="ov" id="ov"><span class="cap" id="ovc"></span><button id="pv">←</button><div class="frame" id="ovf"></div><button id="nx">→</button></div>
+
+<script>
+// Curriculum Data Map
+// Items shape: [Hiragana, Katakana, H-Word, H-Meaning, K-Word, K-Meaning]
+// Game types: 'cw'(crossword), 'match', 'decode', 'scramble'
+const rawData = [
+  // A row
+  { d:1, i:[['あ','ア','あめ','糖果','アニメ','動畫'], ['い','イ','いえ','房子','イヤホン','耳機']], g:'cw' },
+  { d:2, i:[['う','ウ','うみ','海','ウドン','烏龍麵'], ['え','エ','えき','車站','エビ','蝦子']], g:'match' },
+  { d:3, i:[['お','オ','おと','聲音','オイル','機油']], g:'scramble' }, // O alone
+  // Ka row
+  { d:4, i:[['か','カ','かさ','雨傘','カメラ','相機'], ['き','キ','きのう','昨天','キス','親吻']], g:'decode' },
+  { d:5, i:[['く','ク','くつ','鞋子','クイズ','測驗'], ['け','ケ','けむり','煙霧','ケーキ','蛋糕']], g:'cw' },
+  { d:6, i:[['こ','コ','こえ','聲音','コップ','杯子']], g:'match' },
+  // Sa row
+  { d:7, i:[['さ','サ','さかな','魚','サイン','簽名'], ['し','シ','しお','鹽巴','シャツ','襯衫']], g:'scramble' },
+  { d:8, i:[['す','ス','すし','壽司','スープ','熱湯'], ['せ','セ','せかい','世界','センター','中心']], g:'decode' },
+  { d:9, i:[['そ','ソ','そら','天空','ソース','醬汁']], g:'cw' },
+  // Ta row
+  { d:10, i:[['た','タ','たけ','竹子','タクシー','計程車'], ['ち','チ','ちず','地圖','チーズ','起司']], g:'match' },
+  { d:11, i:[['つ','ツ','つき','月亮','ツアー','旅行團'], ['て','テ','てがみ','信件','テスト','考試']], g:'scramble' },
+  { d:12, i:[['と','ト','とり','鳥兒','トマト','番茄']], g:'decode' },
+  // Na row
+  { d:13, i:[['な','ナ','なつ','夏天','ナイフ','刀子'], ['に','ニ','にく','肉','ニュース','新聞']], g:'cw' },
+  { d:14, i:[['ぬ','ヌ','ぬの','布料','ヌードル','麵條'], ['ね','ネ','ねこ','貓咪','ネクタイ','領帶']], g:'match' },
+  { d:15, i:[['の','ノ','のど','喉嚨','ノート','筆記本']], g:'scramble' },
+  // Ha row
+  { d:16, i:[['は','ハ','はな','花朵','ハム','火腿'], ['ひ','ヒ','ひかり','光芒','ヒント','提示']], g:'decode' },
+  { d:17, i:[['ふ','フ','ふね','船隻','フィルム','底片'], ['へ','ヘ','へや','房間','ヘルメット','安全帽']], g:'cw' },
+  { d:18, i:[['ほ','ホ','ほし','星星','ホテル','飯店']], g:'match' },
+  // Ma row
+  { d:19, i:[['ま','マ','まど','窗戶','マイク','麥克風'], ['み','ミ','みみ','耳朵','ミルク','牛奶']], g:'scramble' },
+  { d:20, i:[['む','ム','むし','昆蟲','ムード','氣氛'], ['め','メ','めがね','眼鏡','メロン','哈密瓜']], g:'decode' },
+  { d:21, i:[['も','モ','もも','桃子','モーター','馬達']], g:'cw' },
+  // Ya row (combined)
+  { d:22, i:[['や','ヤ','やま','山','ヤギ','山羊'], ['ゆ','ユ','ゆき','雪','ユニフォーム','制服'], ['よ','ヨ','よる','夜晚','ヨガ','瑜珈']], g:'match' },
+  // Ra row
+  { d:23, i:[['ら','ラ','らく','輕鬆','ライオン','獅子'], ['り','リ','りんご','蘋果','リモコン','遙控器']], g:'scramble' },
+  { d:24, i:[['る','ル','るす','不在家','ルール','規則'], ['れ','レ','れきし','歷史','レモン','檸檬']], g:'decode' },
+  { d:25, i:[['ろ','ロ','ろうそく','蠟燭','ロボット','機器人']], g:'cw' },
+  // Wa, Wo, N row
+  { d:26, i:[['わ','ワ','わに','鱷魚','ワイン','葡萄酒'], ['を','ヲ','を','受詞助詞','ヲタク','御宅族'], ['ん','ン','ほん','書本','パン','麵包']], g:'match' },
+  
+  // Comprehensive Days 27-30
+  { d:27, r:true, t:'日常問候', c:'開始實戰對話吧！', i:[['おはよう','早安'], ['こんにちは','你好'], ['こんばんは','晚安(見面)'], ['さようなら','再見']], g:'decode' },
+  { d:28, r:true, t:'道謝與道歉', c:'有禮貌的裝備不可少', i:[['ありがとう','謝謝'], ['すみません','不好意思'], ['ごめんなさい','對不起'], ['よろしく','請多指教']], g:'scramble' },
+  { d:29, r:true, t:'旅遊生存字', c:'迷路點餐必備字彙', i:[['トイレ','廁所'], ['メニュー','菜單'], ['チケット','門票'], ['ホテル','飯店']], g:'match' },
+  { d:30, r:true, t:'終極大魔王', c:'召喚所有學過的記憶！', i:[['おにぎり','飯糰'], ['タクシー','計程車'], ['ラーメン','拉麵'], ['カメラ','相機']], g:'cw' }
+];
+
+// Game Data Generators
+const genCW = (d) => {
+    // Fake CW grids for visual representation
+    const grids = [
+        { w:3, h:2, c:[[1,1,1],[1,2,2],[2,2,0]], l:['【橫1】喜歡的情感','【直2】很好'] },
+        { w:2, h:3, c:[[1,1,1],[2,1,2],[2,2,0],[3,1,0]], l:['【直1】季節','【橫2】動作'] },
+        { w:3, h:3, c:[[1,1,1],[1,2,0],[2,1,2],[2,2,0],[2,3,3],[3,2,0]], l:['【橫1】天氣','【橫2】物品','【直2】食物'] }
+    ];
+    let sel = grids[d.d % grids.length];
+    
+    let html = `<div class="cw-grid" style="grid-template-columns: repeat(${sel.w}, 36px); grid-template-rows: repeat(${sel.h}, 36px);">`;
+    for(let r=1; r<=sel.h; r++){
+        for(let c=1; c<=sel.w; c++){
+            let cell = sel.c.find(x => x[0]===r && x[1]===c);
+            if(cell) {
+                html += `<div class="cw-cell">${cell[2] ? `<span class="cw-num">${cell[2]}</span>` : ''}</div>`;
+            } else {
+                html += `<div></div>`;
+            }
+        }
+    }
+    html += `</div><div style="flex:1; font-size: 12.5px; font-weight:700; line-height: 1.8;">`;
+    sel.l.forEach(x => html += `<div><span style="color:var(--v);margin-right:6px">●</span>${x}</div>`);
+    html += `</div>`;
+    return html;
+};
+
+const genMatch = (d) => {
+    // Generate matching pairs
+    let p1 = d.r ? d.i[0][0] : d.i[0][2];
+    let m1 = d.r ? d.i[0][1] : d.i[0][3];
+    let p2 = d.r ? d.i[1][0] : (d.i[1] ? d.i[1][4] : d.i[0][4]);
+    let m2 = d.r ? d.i[1][1] : (d.i[1] ? d.i[1][5] : d.i[0][5]);
+    
+    return `
+    <div style="width:100%; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:10px 20px;">
+        <div style="display:flex; flex-direction:column; gap:16px; flex:1;">
+            <div style="background:#fff; border:2px solid var(--k); padding:10px; border-radius:10px; text-align:center; font-weight:900; font-size:20px;">${p1}</div>
+            <div style="background:#fff; border:2px solid var(--k); padding:10px; border-radius:10px; text-align:center; font-weight:900; font-size:20px;">${p2}</div>
+        </div>
+        <div style="flex:none; font-size:20px; color:var(--l);">⮀</div>
+        <div style="display:flex; flex-direction:column; gap:16px; flex:1;">
+            <div style="background:var(--k); color:#fff; padding:10px; border-radius:10px; text-align:center; font-weight:700; font-size:14px;">${m2}</div>
+            <div style="background:var(--k); color:#fff; padding:10px; border-radius:10px; text-align:center; font-weight:700; font-size:14px;">${m1}</div>
+        </div>
+    </div>`;
+};
+
+const genDecode = (d) => {
+    let target = d.r ? d.i[0][0] : d.i[0][4]; // Katakana or review word
+    let chars = target.split('');
+    let dictHTML = '';
+    chars.forEach((c, i) => {
+        dictHTML += `<div style="text-align:center; background:#fff; border:1.5px solid var(--k); border-radius:8px; padding:4px 8px; font-weight:900;">★ = ${c}</div>`;
+    });
+    
+    return `
+    <div style="width:100%; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-size:12px; font-weight:700; opacity:0.8;">已知線索 (Key)：</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">${dictHTML}</div>
+        <div style="margin-top:10px; font-size:12px; font-weight:700;">解開密碼：</div>
+        <div style="display:flex; gap:12px; justify-content:center; background:var(--bg); padding:16px; border-radius:12px; border:2px dashed var(--k);">
+            ${chars.map(c=>`<div style="font-size:24px; font-weight:900;">★</div>`).join('<span style="color:var(--v); font-weight:900;">+</span>')}
+            <span style="font-size:24px; font-weight:900; margin-left:10px;">= ?</span>
+        </div>
+    </div>`;
+};
+
+const genScramble = (d) => {
+    let word = d.r ? d.i[0][0] : d.i[0][2];
+    let scrambled = word.split('').sort(() => Math.random() - 0.5).join(' ・ ');
+    return `
+    <div style="width:100%; text-align:center; display:flex; flex-direction:column; gap:16px; align-items:center;">
+        <div style="font-size:12px; font-weight:700; opacity:0.8;">將下列字母重組回原本的裝備！</div>
+        <div style="font-size:32px; font-weight:900; letter-spacing:4px; color:var(--v); background:#fff; padding:16px 32px; border-radius:16px; border:2px solid var(--k); box-shadow: 4px 4px 0 var(--k);">
+            ${scrambled}
+        </div>
+        <div style="font-size:24px; font-weight:900; margin-top:10px;">⬇</div>
+        <div style="display:flex; gap:8px;">
+            ${word.split('').map(()=>`<div style="width:40px; height:40px; border-bottom:3px solid var(--k);"></div>`).join('')}
+        </div>
+    </div>`;
+};
+
+const renderGame = (d) => {
+    let content = '';
+    let title = '';
+    if(d.g === 'cw') { title = '🧩 密室填字謎'; content = `<div style="display:flex; gap:24px; align-items:flex-start;">${genCW(d)}</div>`; }
+    if(d.g === 'match') { title = '🔗 裝備連連看'; content = genMatch(d); }
+    if(d.g === 'decode') { title = '🕵️ 暗號解碼器'; content = genDecode(d); }
+    if(d.g === 'scramble') { title = '🌪️ 字母重組機'; content = genScramble(d); }
+    
+    return { title, content };
+};
+
+
+let h = '';
+
+// P.1 COVER
+h += `
+<div class="cell"><div class="frame" data-i="0">
+<div class="pg eb">
+    <div style="position:absolute;inset:30px 32px auto;display:flex;justify-content:space-between;align-items:center">
+        <span class="pill" style="background:var(--k);color:var(--l); border-color:var(--l)">KANA · 30 DAYS</span>
+    </div>
+    <div class="bri" style="position:absolute;left:24px;top:58px;font-size:300px;line-height:1;color:var(--v)">30</div>
+    <div class="bri" style="position:absolute;left:340px;top:110px;font-size:40px;line-height:0.95;color:var(--k)">days<br/><span style="color:var(--b)">no<br/>skip.</span></div>
+    <div class="sticker" style="left:392px;top:262px;width:106px;height:106px;background:var(--l);color:var(--k);font-size:13px;line-height:1.25;transform:rotate(12deg)">
+        每天<br/><span class="bri" style="font-size:30px">10</span><br/>分鐘
+    </div>
+    <div class="band" style="top:384px;background:var(--c);color:var(--k);transform:rotate(-4deg)">
+        <span>ONE CARD · TWO KANA · EVERY DAY<span style="margin:0 0 0 22px">✳</span></span>
+        <span>ONE CARD · TWO KANA · EVERY DAY<span style="margin:0 0 0 22px">✳</span></span>
+    </div>
+    <div style="position:absolute;left:32px;right:32px;top:452px">
+        <h1 style="font-size:40px;font-weight:900;line-height:1.12">五十音 30 天<br/>解謎挑戰書</h1>
+        <div style="font-size:13px;font-weight:700;margin-top:8px;opacity:0.65;color:var(--b)">蒐集假名裝備・破解密室填字謎</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px">
+            <div class="in"><small>玩家代號</small></div>
+            <div class="in"><small>目標等級</small></div>
+            <div class="in"><small>解鎖難度</small></div>
+            <div class="in"><small>通關指導</small></div>
+        </div>
+    </div>
+    <div style="position:absolute;left:32px;right:32px;bottom:28px;background:var(--k);color:var(--w);border-radius:16px;padding:12px 16px;box-shadow: 4px 4px 0 var(--b)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:12px;font-weight:900;color:var(--l)">🔥 30 天完賽宣誓</span>
+            <span style="font-size:10px;font-weight:700">簽名 ＿＿＿＿ 日期 ＿＿＿＿</span>
+        </div>
+        <p style="font-size:10px;line-height:1.6;margin-top:5px;opacity:0.85">我，＿＿＿＿，接受這場五十音解謎挑戰：未來 30 天，每天解鎖假名、通關填字謎。我要用每天一小步，獲得完整日文閱讀能力！</p>
+    </div>
+</div>
+</div><span class="cap">P.01 封面</span></div>`;
+
+// P.2 TRACKER
+let tr = '';
+for(let i=1; i<=30; i++){
+    let bg = i===30 ? 'background:var(--v);color:#fff;border:2px solid var(--k);' : (i%7===0 ? 'background:var(--l);color:var(--k);border:2px solid var(--k);' : 'background:#fff;color:var(--k);border:2px solid var(--k);');
+    let bd = i===30 ? 'FINISH' : (i%7===0 ? 'CHECK' : '');
+    tr += `<div style="height:76px;border-radius:16px;position:relative;padding:8px 10px;box-shadow:2px 2px 0 var(--k);${bg}">
+        <span class="bri" style="font-size:26px;line-height:1">${i}</span>
+        <span style="position:absolute;right:9px;bottom:9px;width:18px;height:18px;border-radius:50%;border:2px solid currentColor"></span>
+        ${bd ? `<span style="position:absolute;left:10px;bottom:9px;font-size:9px;font-weight:900;letter-spacing:.06em">${bd}</span>` : ''}
+    </div>`;
+}
+h += `
+<div class="cell"><div class="frame" data-i="1">
+<div class="pg eb" style="background:var(--w);color:var(--k);padding:32px 32px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <h2 style="font-size:32px;font-weight:900;line-height:1.1">30 天<br/>破關進度</h2>
+        <span class="pill" style="background:var(--w);color:var(--k)">已解鎖 ___ / 30</span>
+    </div>
+    <div style="display:flex;gap:14px;font-size:11px;font-weight:700;margin-top:12px;color:var(--b)">
+        <span>✓ 每解鎖一天，就在方格打勾</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px">
+        ${tr}
+    </div>
+    <div style="position:absolute;left:32px;right:32px;bottom:30px;background:var(--b);color:var(--w);border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;border:2px solid var(--k);box-shadow: 4px 4px 0 var(--k);">
+        <div class="ph" style="width:62px;height:62px;background:var(--w);color:var(--k);border-radius:10px;flex:none;border-color:var(--k)">QR<br/>解答</div>
+        <p style="font-size:11px;line-height:1.65;font-weight:500;">掃描 QR Code 可核對每日填字謎最終密碼解答，<br/>並領取專屬<b style="color:var(--l);font-weight:900">破關語音指導</b>。</p>
+    </div>
+</div>
+</div><span class="cap">P.02 進度頁</span></div>`;
+
+// Days 1-30 Generation
+for(let i=0; i<30; i++){
+    let d = rawData[i];
+    let prev = i>0 ? rawData[i-1] : null;
+    let items = d.i;
+    let isReview = d.r;
+    
+    // Auto adapt grid based on items count
+    let gridCols = items.length === 1 ? '1fr' : '1fr 1fr';
+    let boxHeight = items.length > 2 ? '80px' : '100px';
+    let boxesHTML = '';
+    
+    if(!isReview) {
+        // Hiragana & Katakana mode
+        items.forEach((item, idx) => {
+            // item = [Hira, Kata, HW, HM, KW, KM]
+            boxesHTML += `
+            <div style="background:var(--w);color:var(--k);border-radius:18px;padding:12px 14px;height:${boxHeight};display:flex;flex-direction:column;justify-content:space-between;border:2px solid var(--k);box-shadow: 2px 2px 0 var(--k);">
+                <div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:900"><span style="color:var(--b)">平假名裝備</span></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div class="bri" style="font-size:36px;line-height:1;color:var(--v)">${item[0]}</div>
+                    <div style="text-align:right;"><div style="font-size:14px;font-weight:900;">${item[2]}</div><div style="font-size:11px;font-weight:700;margin-top:2px;opacity:0.7">${item[3]}</div></div>
+                </div>
+            </div>
+            <div style="background:var(--w);color:var(--k);border-radius:18px;padding:12px 14px;height:${boxHeight};display:flex;flex-direction:column;justify-content:space-between;border:2px solid var(--k);box-shadow: 2px 2px 0 var(--k);">
+                <div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:900"><span style="color:var(--v)">片假名裝備</span></div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div class="bri" style="font-size:36px;line-height:1;color:var(--b)">${item[1]}</div>
+                    <div style="text-align:right;"><div style="font-size:14px;font-weight:900;">${item[4]}</div><div style="font-size:11px;font-weight:700;margin-top:2px;opacity:0.7">${item[5]}</div></div>
+                </div>
+            </div>`;
+        });
+    } else {
+        // Review mode
+        items.forEach((item, idx) => {
+            let bg = idx % 2 === 0 ? 'var(--l)' : 'var(--c)';
+            boxesHTML += `
+            <div style="background:${bg};color:var(--k);border-radius:18px;padding:12px 14px;height:100px;display:flex;flex-direction:column;justify-content:space-between;border:2px solid var(--k);box-shadow: 2px 2px 0 var(--k);">
+                <div style="display:flex;justify-content:space-between;font-size:10.5px;font-weight:900"><span>裝備 ${idx+1}</span></div>
+                <div><div class="bri" style="font-size:22px;line-height:1">${item[0]}</div><div style="font-size:12px;font-weight:700;margin-top:4px">${item[1]}</div></div>
+            </div>`;
+        });
+    }
+
+    // Prev answer extraction
+    let prevAns = '準備起飛！';
+    if(prev) {
+        if(prev.r) prevAns = `【${prev.i[0][0]}】`;
+        else prevAns = `【${prev.i[0][0]} / ${prev.i[0][1]}】`;
+    }
+
+    // Front Page
+    h += `
+    <div class="cell"><div class="frame" data-i="${i*2+2}">
+    <div class="pg eb" style="padding:30px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="pill" style="background:var(--b);color:var(--w);border-color:var(--k)">DAY ${d.d} / 30</span>
+            <span class="pill" style="background:var(--w);color:var(--k)">${isReview ? '⚔️ 魔王挑戰區' : '🎮 裝備合成區'}</span>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:14px;margin-top:16px">
+            <div class="bri" style="font-size:120px;line-height:0.8;color:var(--k);text-shadow: 4px 4px 0 var(--l)">${d.d}</div>
+            <div style="flex:1;padding-bottom:4px">
+                <div style="height:12px;border-radius:99px;background:#E9ECEF;border:2px solid var(--k)">
+                    <div style="width:${Math.round(d.d/30*100)}%;height:100%;border-radius:99px;background:var(--v)"></div>
+                </div>
+                <div style="font-size:10px;font-weight:900;margin-top:6px;color:var(--b)">解謎進度 ${Math.round(d.d/30*100)}%</div>
+            </div>
+        </div>
+        
+        <p style="font-size:18px;font-weight:900;line-height:1.45;margin-top:18px">
+            ${isReview ? `大綜合實戰演練：${d.t}` : `今日解鎖音韻：【${items.map(x=>x[0]).join('・')}】行`}
+        </p>
+        
+        <div style="margin-top:10px;background:var(--w);border:2px solid var(--k);border-radius:12px;padding:8px 12px;font-size:10.5px;line-height:1.6;font-weight:700;box-shadow: 2px 2px 0 var(--k);">
+            ✅ ${isReview ? d.c : `昨日回顧：${prevAns} 把它們印在腦海裡。`}
+        </div>
+        <div style="font-size:10.5px;margin-top:12px;font-weight:900;color:var(--b)">🎬 裝備庫：${isReview ? '進階實用單字大補帖' : '平片假名單字對照'}</div>
+
+        <div style="display:grid;grid-template-columns:${gridCols};gap:10px;margin-top:8px">
+            ${boxesHTML}
+        </div>
+        
+        <div style="display:flex;gap:8px;margin-top:14px;font-size:10px;font-weight:700">
+            <span class="pill" style="background:var(--k);color:var(--w);padding:4px 10px;font-size:10px">五十音闖關</span>
+            <span class="pill" style="background:var(--w);color:var(--k);padding:4px 10px;font-size:10px">☐ 微任務：將今天的新裝備大聲唸 3 遍</span>
+        </div>
+    </div>
+    </div><span class="cap">P.${(i*2+3).toString().padStart(2,'0')} Day ${d.d} 正面</span></div>`;
+
+    // Back Page (Game)
+    let game = renderGame(d);
+    
+    h += `
+    <div class="cell"><div class="frame" data-i="${i*2+3}">
+    <div class="pg eb" style="background:var(--w);color:var(--k);padding:30px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="pill" style="background:var(--k);color:var(--l);border-color:var(--k)">DAY ${d.d} / 30</span>
+            <span class="pill" style="background:var(--l);color:var(--k)">${game.title}</span>
+        </div>
+        
+        <div class="game-box">
+            <div style="font-size:16px;font-weight:900;color:var(--v)">🗝️ 運用今日與過去的裝備，解開密碼！</div>
+            <div style="margin-top: 16px;">
+                ${game.content}
+            </div>
+        </div>
+
+        <div style="margin-top:24px;background:var(--bg);border:2px solid var(--k);border-radius:20px;padding:20px 22px;box-shadow: 4px 4px 0 var(--k);">
+            <div style="font-size:14px;font-weight:900;color:var(--b)">✏️ 通關密語收集</div>
+            <div style="font-size:12px;font-weight:700;line-height:1.45;margin-top:8px">請將上方解謎獲得的假名依序寫在下方，完成今日挑戰！</div>
+            <div style="display:flex;gap:12px;margin-top:18px;justify-content:center;">
+                <div style="border-bottom: 3px dashed var(--k); width: 60px; height: 30px;"></div>
+                <div style="border-bottom: 3px dashed var(--k); width: 60px; height: 30px;"></div>
+                <div style="border-bottom: 3px dashed var(--k); width: 60px; height: 30px;"></div>
+                <div style="border-bottom: 3px dashed var(--k); width: 60px; height: 30px;"></div>
+            </div>
+        </div>
+        
+        <div style="position:absolute;left:30px;right:30px;bottom:28px;display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:11px;font-weight:700;color:var(--b)">💡 解答在 DAY ${d.d===30?'62':d.d+1} 的角落</span>
+            <span class="bri" style="font-size:22px">→ ${d.d}</span>
+        </div>
+    </div>
+    </div><span class="cap">P.${(i*2+4).toString().padStart(2,'0')} Day ${d.d} 背面</span></div>`;
+}
+
+// P.61 COMPLETE
+h += `
+<div class="cell"><div class="frame" data-i="60">
+<div class="pg eb" style="background:var(--b);color:var(--w)">
+    <div style="position:absolute;inset:30px 32px auto;display:flex;justify-content:space-between">
+        <span class="pill" style="background:var(--k);color:var(--w);border-color:var(--w)">DAY 30 · COMPLETE</span>
+        <span class="pill" style="background:var(--w);color:var(--k)">🏆 破關證明</span>
+    </div>
+    <div class="bri" style="position:absolute;left:28px;top:78px;font-size:120px;line-height:0.86;color:var(--l);text-shadow: 6px 6px 0 var(--k);">game<br/>clear!</div>
+    <div class="sticker" style="right:36px;top:110px;width:130px;height:130px;background:var(--v);color:var(--w);transform:rotate(-10deg);border-color:var(--k);">
+        <div><span class="bri" style="font-size:46px;display:block;line-height:1">30</span><span style="font-size:12px">天解謎成功</span></div>
+    </div>
+    <div class="band" style="top:420px;background:var(--l);color:var(--k);transform:rotate(3deg);border-top:3px solid var(--k);border-bottom:3px solid var(--k);">
+        <span>30-DAY PUZZLE MASTER<span style="margin:0 0 0 22px">✳</span></span>
+        <span>30-DAY PUZZLE MASTER<span style="margin:0 0 0 22px">✳</span></span>
+    </div>
+    <div style="position:absolute;left:32px;right:32px;top:500px">
+        <h2 style="font-size:34px;font-weight:900">Day 30 破關證明書</h2>
+        <p style="font-size:13px;line-height:1.8;margin-top:8px;font-weight:500">恭喜你完成 30 天五十音解謎挑戰！<br/>46 個假名、數十個實用單字與短句，你已經成功獲得<br/>日文新手村的最強裝備！</p>
+        <div style="display:flex;gap:8px;margin-top:16px">
+            <div style="flex:1;background:var(--w);color:var(--k);border-radius:14px;padding:8px 12px;border:2px solid var(--k);box-shadow:2px 2px 0 var(--k);"><div class="bri" style="font-size:28px;line-height:1;color:var(--v)">46</div><div style="font-size:10px;font-weight:900">清音假名</div></div>
+            <div style="flex:1;background:var(--w);color:var(--k);border-radius:14px;padding:8px 12px;border:2px solid var(--k);box-shadow:2px 2px 0 var(--k);"><div class="bri" style="font-size:28px;line-height:1;color:var(--b)">30</div><div style="font-size:10px;font-weight:900">次填字謎</div></div>
+            <div style="flex:1;background:var(--w);color:var(--k);border-radius:14px;padding:8px 12px;border:2px solid var(--k);box-shadow:2px 2px 0 var(--k);"><div class="bri" style="font-size:28px;line-height:1;color:var(--c)">100%</div><div style="font-size:10px;font-weight:900">裝備收集率</div></div>
+        </div>
+    </div>
+    <div style="position:absolute;left:32px;right:32px;bottom:30px;display:flex;gap:20px;font-size:11px;font-weight:700">
+        <span style="flex:1;border-bottom:2px solid var(--k);padding-bottom:4px">玩家代號</span>
+        <span style="flex:1;border-bottom:2px solid var(--k);padding-bottom:4px">通關日期</span>
+    </div>
+</div>
+</div><span class="cap">P.61 Day 30 完賽證明</span></div>`;
+
+// P.62 REWARD
+h += `
+<div class="cell"><div class="frame" data-i="61">
+<div class="pg eb" style="padding:32px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="pill" style="background:var(--v);color:var(--w);border-color:var(--k)">REWARD COUPON</span>
+        <span class="ph" style="width:74px;height:26px;color:var(--k);border-color:var(--k)">LOGO</span>
+    </div>
+    <h2 style="font-size:58px;font-weight:900;line-height:1;margin-top:30px;text-shadow: 4px 4px 0 var(--l)">領取<br/><span style="color:var(--b)">戰利品</span></h2>
+    <div style="margin-top:26px;background:var(--l);color:var(--k);border-radius:22px;padding:20px 22px;position:relative;border:2px solid var(--k);box-shadow:4px 4px 0 var(--k);">
+        <div style="font-size:12px;font-weight:900;color:var(--v)">🎁 專屬禮遇</div>
+        <p style="font-size:15px;line-height:1.7;margin-top:8px;font-weight:900">憑此頁面截圖或實體卡片，回傳給官方帳號<br/>即可兌換【初級日語對話體驗包】一份！</p>
+    </div>
+    <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="in" style="height:72px"><small>玩家簽名</small></div>
+        <div class="in" style="height:72px"><small>NPC 確認核章 / 日期</small></div>
+    </div>
+    <div class="sticker" style="right:40px;bottom:100px;width:118px;height:118px;background:var(--w);border:3px dashed var(--v);color:var(--v);font-size:12px;transform:rotate(-8deg);box-shadow:none;">蓋章處</div>
+    <div style="position:absolute;left:32px;bottom:32px">
+        <span class="pill" style="background:var(--w);color:var(--k);font-size:13px;border:2px solid var(--k);box-shadow:2px 2px 0 var(--k)">🎓 新手村畢業！前往下一關</span>
+    </div>
+</div>
+</div><span class="cap">P.62 回報任務</span></div>`;
+
+document.getElementById('app').innerHTML = h;
+
+// Zoom functionality
+(function(){
+    var b = document.body;
+    function setZ(z){
+        b.style.setProperty('--z',z);
+        [].forEach.call(document.querySelectorAll('#zm button'),function(x){x.className=x.dataset.z===z?'on':''})
+    }
+    document.getElementById('zm').onclick=function(e){if(e.target.dataset.z)setZ(e.target.dataset.z)};
+    var ov=document.getElementById('ov'),ovf=document.getElementById('ovf'),ovc=document.getElementById('ovc'),cur=-1;
+    function cells(){return document.querySelectorAll('.cell')}
+    function show(i){
+        var c=cells();if(i<0||i>=c.length)return;cur=i;
+        ovf.innerHTML=c[i].querySelector('.frame').innerHTML;
+        ovc.textContent=c[i].querySelector('.cap').textContent+'  ／ 62';
+        ovf.style.setProperty('--z',Math.min(1.1,(innerHeight-90)/794));
+        ov.classList.add('show');
+    }
+    document.addEventListener('click',function(e){var f=e.target.closest('.frame');if(f&&!f.closest('.ov'))show(+f.dataset.i)});
+    ov.onclick=function(e){if(e.target===ov)ov.classList.remove('show')};
+    document.getElementById('pv').onclick=function(){show(cur-1)};
+    document.getElementById('nx').onclick=function(){show(cur+1)};
+    document.addEventListener('keydown',function(e){
+        if(!ov.classList.contains('show'))return;
+        if(e.key==='Escape')ov.classList.remove('show');
+        if(e.key==='ArrowRight')show(cur+1);
+        if(e.key==='ArrowLeft')show(cur-1);
+    });
+})();
+</script>
+</body>
+</html>
+```eof
